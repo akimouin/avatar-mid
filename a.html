@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>轉生形象製造器</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <div class="container border">
+            <div class="row border">
+                <div
+                    class="pictureFrame col-12 col-lg-6 border d-flex justify-content-center align-items-center"
+                    id="pictureFrame"
+                ></div>
+                <div
+                    class="controlArea col-12 col-lg-6 border"
+                    id="controlArea"
+                >
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button
+                                class="nav-link active"
+                                id="eye-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#eyebtn"
+                                type="button"
+                                role="tab"
+                                aria-controls="eyebtn"
+                                aria-selected="true"
+                                >Eye</button
+                            >
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button
+                                class="nav-link"
+                                id="nose-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#nosebtn"
+                                type="button"
+                                role="tab"
+                                aria-controls="nosebtn"
+                                aria-selected="false"
+                                >nose</button
+                            >
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button
+                                class="nav-link"
+                                id="mouth-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#mouthbtn"
+                                type="button"
+                                role="tab"
+                                aria-controls="mouthbtn"
+                                aria-selected="false"
+                                >mouth</button
+                            >
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button
+                                class="nav-link"
+                                id="ear-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#earbtn"
+                                type="button"
+                                role="tab"
+                                aria-controls="earbtn"
+                                aria-selected="false"
+                                >ear</button
+                            >
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button
+                                class="nav-link"
+                                id="hair-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#hairbtn"
+                                type="button"
+                                role="tab"
+                                aria-controls="hairbtn"
+                                aria-selected="false"
+                                >hair</button
+                            >
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div
+                            class="tab-pane fade show active"
+                            id="eyebtn"
+                            role="tabpanel"
+                            aria-labelledby="eye-tab"
+                        >
+                            eyes
+                        </div>
+                        <div
+                            class="tab-pane fade"
+                            id="nosebtn"
+                            role="tabpanel"
+                            aria-labelledby="nose-tab"
+                        >
+                            nose
+                        </div>
+                        <div
+                            class="tab-pane fade"
+                            id="mouthbtn"
+                            role="tabpanel"
+                            aria-labelledby="mouth-tab"
+                            >mouth
+                        </div>
+                        <div
+                            class="tab-pane fade"
+                            id="earbtn"
+                            role="tabpanel"
+                            aria-labelledby="ear-tab"
+                            >ear
+                        </div>
+                        <div
+                            class="tab-pane fade"
+                            id="hairbtn"
+                            role="tabpanel"
+                            aria-labelledby="hair-tab"
+                            >hair
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://pixijs.download/release/pixi.js"></script>
+        <script>
+            //畫布定義
+            const pictureFrame = document.querySelector("#pictureFrame");
+            let avatar = new PIXI.Application({ width: 480, height: 500 });
+            pictureFrame.appendChild(avatar.view);
+
+            //顏色列表
+            const colors = [0xffcccc, 0xccffcc, 0xccccff];
+
+            //眼睛元件
+            const eyesvgs = ["./eyes/1.svg", "./eyes/2.svg"]; //之後要改為由資料庫引入
+            const eyeitems = [];
+            for (let i = 0; i < eyesvgs.length; i++) {
+                let eye = PIXI.Sprite.from(eyesvgs[i]);
+                eye.anchor.set(0.5); //錨點
+                eye.scale.set(0.7); //大小
+                //畫布上的位置
+                eye.x = 240;
+                eye.y = 100;
+
+                eyeitems.push(eye); //存入陣列中備用
+            }
+            avatar.stage.addChild(eyeitems[0]);
+            const eyebtn = document.querySelector('#eyebtn');
+            for (let x = 0; x < eyesvgs.length; x++) {
+                const btn1 = document.createElement("button");
+                btn1.className = "btn1";
+                btn1.innerText = "eye" + x;
+                btn1.addEventListener(
+                    "click",
+                    function () {
+                        svgChange(x);
+                    },
+                    false
+                );
+                btn1.addEventListener(
+                    "click",
+                    function () {
+                        colorbtns(x);
+                    },
+                    false
+                );
+                svgbtn.appendChild(btn1);
+            }
+
+            const svgChange = (a) => {
+                for (let i = 0; i < svgs.length; i++) {
+                    app.stage.removeChild(items[i]);
+                }
+                app.stage.addChild(items[a]);
+            };
+            function colorchange(a, b) {
+                items[a].tint = colors[b];
+            }
+        </script>
+    </body>
+</html>
