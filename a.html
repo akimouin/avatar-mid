@@ -152,6 +152,7 @@
 
             //顏色列表
             const colors = [0xffcccc, 0xccffcc, 0xccccff];
+            const colors16 = colors;
 
             //眼睛元件
             const eyesvgs = ["./eyes/1.svg", "./eyes/2.svg"]; //之後要改為由資料庫引入
@@ -194,8 +195,15 @@
                 const colorbtn = document.createElement("button");
                 colorbtn.className = "colorbtn";
                 colorbtn.id = "colorbtn" + i;
-                colorbtn.innerText = colors[i];
-                // colorbtn.style.backgroundColor = "colors[i]";
+                colorbtn.innerText = colors[i].toString(16);
+                colorbtn.style.backgroundColor = "#" + colors[i].toString(16);
+                colorbtn.addEventListener(
+                        "click",
+                        function () {
+                            colorchange(0, i);
+                        },
+                        false
+                    );
                 eyebox.appendChild(colorbtn);
             }
 
