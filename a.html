@@ -11,6 +11,11 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
         />
+        <style>
+            body {
+                background-color: #2f4f4f;
+            }
+        </style>
     </head>
     <body>
         <div class="container border">
@@ -29,10 +34,10 @@
                                 class="nav-link active"
                                 id="eye-tab"
                                 data-bs-toggle="tab"
-                                data-bs-target="#eyebtn"
+                                data-bs-target="#eyebox"
                                 type="button"
                                 role="tab"
-                                aria-controls="eyebtn"
+                                aria-controls="eyebox"
                                 aria-selected="true"
                                 >Eye</button
                             >
@@ -42,10 +47,10 @@
                                 class="nav-link"
                                 id="nose-tab"
                                 data-bs-toggle="tab"
-                                data-bs-target="#nosebtn"
+                                data-bs-target="#nosebox"
                                 type="button"
                                 role="tab"
-                                aria-controls="nosebtn"
+                                aria-controls="nosebox"
                                 aria-selected="false"
                                 >nose</button
                             >
@@ -55,10 +60,10 @@
                                 class="nav-link"
                                 id="mouth-tab"
                                 data-bs-toggle="tab"
-                                data-bs-target="#mouthbtn"
+                                data-bs-target="#mouthbox"
                                 type="button"
                                 role="tab"
-                                aria-controls="mouthbtn"
+                                aria-controls="mouthbox"
                                 aria-selected="false"
                                 >mouth</button
                             >
@@ -68,10 +73,10 @@
                                 class="nav-link"
                                 id="ear-tab"
                                 data-bs-toggle="tab"
-                                data-bs-target="#earbtn"
+                                data-bs-target="#earbox"
                                 type="button"
                                 role="tab"
-                                aria-controls="earbtn"
+                                aria-controls="earbox"
                                 aria-selected="false"
                                 >ear</button
                             >
@@ -81,10 +86,10 @@
                                 class="nav-link"
                                 id="hair-tab"
                                 data-bs-toggle="tab"
-                                data-bs-target="#hairbtn"
+                                data-bs-target="#hairbox"
                                 type="button"
                                 role="tab"
-                                aria-controls="hairbtn"
+                                aria-controls="hairbox"
                                 aria-selected="false"
                                 >hair</button
                             >
@@ -93,7 +98,7 @@
                     <div class="tab-content" id="myTabContent">
                         <div
                             class="tab-pane fade show active"
-                            id="eyebtn"
+                            id="eyebox"
                             role="tabpanel"
                             aria-labelledby="eye-tab"
                         >
@@ -101,7 +106,7 @@
                         </div>
                         <div
                             class="tab-pane fade"
-                            id="nosebtn"
+                            id="nosebox"
                             role="tabpanel"
                             aria-labelledby="nose-tab"
                         >
@@ -109,21 +114,21 @@
                         </div>
                         <div
                             class="tab-pane fade"
-                            id="mouthbtn"
+                            id="mouthbox"
                             role="tabpanel"
                             aria-labelledby="mouth-tab"
                             >mouth
                         </div>
                         <div
                             class="tab-pane fade"
-                            id="earbtn"
+                            id="earbox"
                             role="tabpanel"
                             aria-labelledby="ear-tab"
                             >ear
                         </div>
                         <div
                             class="tab-pane fade"
-                            id="hairbtn"
+                            id="hairbox"
                             role="tabpanel"
                             aria-labelledby="hair-tab"
                             >hair
@@ -142,6 +147,7 @@
             //畫布定義
             const pictureFrame = document.querySelector("#pictureFrame");
             let avatar = new PIXI.Application({ width: 480, height: 500 });
+            avatar.renderer.backgroundColor = 0x2f4f4f;
             pictureFrame.appendChild(avatar.view);
 
             //顏色列表
@@ -161,37 +167,74 @@
                 eyeitems.push(eye); //存入陣列中備用
             }
             avatar.stage.addChild(eyeitems[0]);
-            const eyebtn = document.querySelector('#eyebtn');
+
+            const eyebox = document.querySelector("#eyebox");
             for (let x = 0; x < eyesvgs.length; x++) {
-                const btn1 = document.createElement("button");
-                btn1.className = "btn1";
-                btn1.innerText = "eye" + x;
-                btn1.addEventListener(
+                const eyebtn = document.createElement("button");
+                eyebtn.className = "eyebtn";
+                eyebtn.innerText = "eye" + x;
+                eyebtn.addEventListener(
                     "click",
                     function () {
                         svgChange(x);
                     },
                     false
                 );
-                btn1.addEventListener(
+                eyebtn.addEventListener(
                     "click",
                     function () {
-                        colorbtns(x);
+                        colorEvent(x);
                     },
                     false
                 );
-                svgbtn.appendChild(btn1);
+                eyebox.appendChild(eyebtn);
+            }
+            //在畫面中製作顏色的按鈕
+            for (let i = 0; i < colors.length; i++) {
+                const colorbtn = document.createElement("button");
+                colorbtn.className = "colorbtn";
+                colorbtn.id = "colorbtn" + i;
+                colorbtn.innerText = colors[i];
+                // colorbtn.style.backgroundColor = "colors[i]";
+                eyebox.appendChild(colorbtn);
             }
 
+            //變更圖片
             const svgChange = (a) => {
-                for (let i = 0; i < svgs.length; i++) {
-                    app.stage.removeChild(items[i]);
+                for (let i = 0; i < eyesvgs.length; i++) {
+                    avatar.stage.removeChild(eyeitems[i]);
                 }
-                app.stage.addChild(items[a]);
+                avatar.stage.addChild(eyeitems[a]);
             };
-            function colorchange(a, b) {
-                items[a].tint = colors[b];
-            }
+            //變更顏色
+            const colorchange = (a, b) => {
+                eyeitems[a].tint = colors[b];
+            };
+            //待解決:連動問題
+            //撈取所有顏色按鈕
+            const colorbtns = document.querySelectorAll(".colorbtn");
+
+            //為顏色按鈕加上function
+            const colorEvent = (x) => {
+                for (let c = 0; c < colors.length; c++) {
+                    for (let i = 0; i < eyesvgs.length; i++) {
+                        colorbtns[c].removeEventListener(
+                            "click",
+                            function () {
+                                colorchange(i, c);
+                            },
+                            false
+                        );
+                    }
+                    colorbtns[c].addEventListener(
+                        "click",
+                        function () {
+                            colorchange(x, c);
+                        },
+                        false
+                    );
+                }
+            };
         </script>
     </body>
 </html>
