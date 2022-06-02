@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="./fontawesome-free-6.1.1-web/css/all.css" />
 
     <title><?= $title ?? '轉生形象製造器' ?></title>
+    <style>
+            body {
+                background-color: #2f4f4f;
+            }
+        </style>
 </head>
 
 <body>
