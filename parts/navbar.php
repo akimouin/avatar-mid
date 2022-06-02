@@ -14,7 +14,7 @@
                         <a class="nav-link" href="./ab-add.php">管理系統-新增部件</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">2</a>
+                        <a class="nav-link" href="./sqldata.api.php">2</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">3</a>

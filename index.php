@@ -59,6 +59,16 @@
     const colors = [0xffcccc, 0xccffcc, 0xccccff];
     const colors16 = colors;
 
+    async function try1() {
+        const r = await fetch('sqldata.api.php', {
+            method: 'POST',
+            //body: fd,
+        });
+        const result = await r.json();
+        console.log(result);
+    }
+    try1();
+
     //眼睛元件
     const eyesvgs = ["./eyes/1.svg", "./eyes/2.svg"]; //之後要改為由資料庫引入
     const eyeitems = [];
