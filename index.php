@@ -38,7 +38,34 @@
                 </div>
             </div>
             <form action="">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="mb-3">
+                    <label for="" class="form-label">眼睛</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="eye" id="eye-1" value="1">
+                        <label class="form-check-label" for="eye-1">eye-1
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="eye" id="eye-2" value="2">
+                        <label class="form-check-label" for="eye-2">eye-2
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="eye-color" id="c-1" value="1">
+                        <label class="form-check-label" for="c-1">c-1
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="eye-color" id="c-2" value="2">
+                        <label class="form-check-label" for="c-2">c-2
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="eye-color" id="c-3" value="3">
+                        <label class="form-check-label" for="c-3">c-3
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
@@ -59,15 +86,15 @@
     const colors = [0xffcccc, 0xccffcc, 0xccccff];
     const colors16 = colors;
 
-    async function try1() {
-        const r = await fetch('sqldata.api.php', {
-            method: 'POST',
-            //body: fd,
-        });
-        const result = await r.json();
-        console.log(result);
-    }
-    try1();
+    // async function getData() {
+    //     const r = await fetch('sqldata.api.php', {
+    //         method: 'POST',
+    //         //body: fd,
+    //     });
+    //     const result = await r.json();
+    //     console.log(result);
+    // }
+    // getData();
 
     //眼睛元件
     const eyesvgs = ["./eyes/1.svg", "./eyes/2.svg"]; //之後要改為由資料庫引入
