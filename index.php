@@ -37,36 +37,39 @@
                 <div class="tab-pane fade" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
                 </div>
             </div>
-            <form action="">
+            <form action="" name="form1" onsubmit="sendData(); return false;">
                 <div class="mb-3">
                     <label for="" class="form-label">眼睛</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="eye" id="eye-0" value="0" checked>
+                        <label class="form-check-label" for="eye-0">eye-0
+                        </label>
+                    </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="eye" id="eye-1" value="1">
                         <label class="form-check-label" for="eye-1">eye-1
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eye" id="eye-2" value="2">
-                        <label class="form-check-label" for="eye-2">eye-2
+                        <input class="form-check-input" type="radio" name="eyeColor" id="c-0" value="0" checked>
+                        <label class="form-check-label" for="c-0">c-0
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eye-color" id="c-1" value="1">
+                        <input class="form-check-input" type="radio" name="eyeColor" id="c-1" value="1">
                         <label class="form-check-label" for="c-1">c-1
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eye-color" id="c-2" value="2">
+                        <input class="form-check-input" type="radio" name="eyeColor" id="c-2" value="2">
                         <label class="form-check-label" for="c-2">c-2
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eye-color" id="c-3" value="3">
-                        <label class="form-check-label" for="c-3">c-3
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
+                        資料新增成功
+                    </div>
         </div>
     </div>
 </div>
@@ -185,5 +188,14 @@
             );
         }
     };
+    async function sendData() {
+        const fd = new FormData(document.form1);
+        const r = await fetch('order-add-api.php', {
+            method: 'POST',
+            body: fd,
+        });
+        const result = await r.json();
+        console.log(result);
+    }
 </script>
 <?php include __DIR__ . './parts/html-foot.php' ?>

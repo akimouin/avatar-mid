@@ -11,7 +11,7 @@
                         <a class="nav-link active" aria-current="page" href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./ab-add.php">管理系統-新增部件</a>
+                        <a class="nav-link" href="#">1</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./sqldata.api.php">2</a>
