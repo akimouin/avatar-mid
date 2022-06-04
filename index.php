@@ -41,35 +41,35 @@
                 <div class="mb-3">
                     <label for="" class="form-label">眼睛</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eye" id="eye-0" value="0" checked>
-                        <label class="form-check-label" for="eye-0">eye-0
+                        <input class="form-check-input" type="radio" name="eye" id="eye0" value="0" checked>
+                        <label class="form-check-label" for="eye0">eye0
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eye" id="eye-1" value="1">
-                        <label class="form-check-label" for="eye-1">eye-1
+                        <input class="form-check-input" type="radio" name="eye" id="eye1" value="1">
+                        <label class="form-check-label" for="eye1">eye1
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eyeColor" id="c-0" value="0" checked>
-                        <label class="form-check-label" for="c-0">c-0
+                        <input class="form-check-input" type="radio" name="eyeColor" id="c0" value="0" checked>
+                        <label class="form-check-label" for="c0">c0
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eyeColor" id="c-1" value="1">
-                        <label class="form-check-label" for="c-1">c-1
+                        <input class="form-check-input" type="radio" name="eyeColor" id="c1" value="1">
+                        <label class="form-check-label" for="c1">c1
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eyeColor" id="c-2" value="2">
-                        <label class="form-check-label" for="c-2">c-2
+                        <input class="form-check-input" type="radio" name="eyeColor" id="c2" value="2">
+                        <label class="form-check-label" for="c2">c2
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
             </form>
             <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
-                        資料新增成功
-                    </div>
+                資料新增成功
+            </div>
         </div>
     </div>
 </div>
@@ -130,6 +130,14 @@
             "click",
             function() {
                 colorEvent(x);
+            },
+            false
+        );
+        eyebtn.addEventListener(
+            "click",
+            function() {
+                const chose = document.querySelector("#eye"+x);
+                chose.click();
             },
             false
         );
