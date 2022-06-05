@@ -37,7 +37,7 @@
                 <div class="tab-pane fade" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
                 </div>
             </div>
-            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;">
+            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" style="display: none;">
                 <div class="mb-3">
                     <label for="" class="form-label">眼睛</label>
                     <div class="form-check">
@@ -50,12 +50,15 @@
                         <label class="form-check-label" for="c0">c0
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" id="submit"  class="btn btn-primary">Submit</button>
             </form>
             <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
                 資料新增成功
             </div>
         </div>
+        <div class="col-12 col-lg-6"></div>
+        <div class="col-12 col-lg-6">
+            <button class="btn btn-primary" id="submitClick">保存形象</button></div>
     </div>
 </div>
 <?php include __DIR__ . './parts/scripts.php' ?>
@@ -71,7 +74,7 @@
     pictureFrame.appendChild(avatar.view);
 
     //顏色列表
-    const colors = [0xffcccc, 0xccffcc, 0xccccff];
+    const colors = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff];
     const colors16 = colors;
 
     // async function getData() {
@@ -136,6 +139,7 @@
         eyebox.appendChild(eyebtn);
     }
     //在畫面中製作顏色的按鈕
+    //發現會出現顏色不連動的BUG 還要再修改
     for (let i = 0; i < colors.length; i++) {
         const a = document.createElement("input");
         a.type = "radio";
@@ -202,6 +206,11 @@
             );
         }
     };
+    const submitClick =document.querySelector('#submitClick');
+    submitClick.addEventListener("click", function(){
+        const submit =document.querySelector("#submit");
+        submit.click();
+    })
     async function sendData() {
         const fd = new FormData(document.form1);
         const r = await fetch('order-add-api.php', {
