@@ -37,32 +37,17 @@
                 <div class="tab-pane fade" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
                 </div>
             </div>
-            <form action="" name="form1" onsubmit="sendData(); return false;">
+            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;">
                 <div class="mb-3">
                     <label for="" class="form-label">眼睛</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eye" id="eye0" value="0" checked>
+                        <input class="form-check-input" type="radio" name="eye"  value="0" checked>
                         <label class="form-check-label" for="eye0">eye0
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eye" id="eye1" value="1">
-                        <label class="form-check-label" for="eye1">eye1
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eyeColor" id="c0" value="0" checked>
+                        <input class="form-check-input" type="radio" name="eyeColor" value="0" checked>
                         <label class="form-check-label" for="c0">c0
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eyeColor" id="c1" value="1">
-                        <label class="form-check-label" for="c1">c1
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eyeColor" id="c2" value="2">
-                        <label class="form-check-label" for="c2">c2
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -114,8 +99,15 @@
     }
     avatar.stage.addChild(eyeitems[0]);
 
+    const form1 = document.querySelector('#form1');
     const eyebox = document.querySelector("#eyebox");
     for (let x = 0; x < eyesvgs.length; x++) {
+        const a = document.createElement("input");
+        a.type = "radio";
+        a.name="eye";
+        a.id="eye"+x;
+        a.value=x;
+        form1.appendChild(a);
         const eyebtn = document.createElement("button");
         eyebtn.className = "eyebtn";
         eyebtn.innerText = "eye" + x;
@@ -136,7 +128,7 @@
         eyebtn.addEventListener(
             "click",
             function() {
-                const chose = document.querySelector("#eye"+x);
+                const chose = document.querySelector("#eye" + x);
                 chose.click();
             },
             false
@@ -145,6 +137,12 @@
     }
     //在畫面中製作顏色的按鈕
     for (let i = 0; i < colors.length; i++) {
+        const a = document.createElement("input");
+        a.type = "radio";
+        a.name="eyeColor";
+        a.id="ec"+i;
+        a.value=i;
+        form1.appendChild(a);
         const colorbtn = document.createElement("button");
         colorbtn.className = "colorbtn";
         colorbtn.id = "colorbtn" + i;
@@ -154,6 +152,14 @@
             "click",
             function() {
                 colorchange(0, i);
+            },
+            false
+        );
+        colorbtn.addEventListener(
+            "click",
+            function() {
+                const chose = document.querySelector("#ec" + i);
+                chose.click();
             },
             false
         );
