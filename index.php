@@ -37,7 +37,7 @@
                 <div class="tab-pane fade" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
                 </div>
             </div>
-            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" >
+            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" style="display: none;">
                 <div class="mb-3">
                     <label for="" class="form-label">眼睛</label>
                     <div class="form-check">
