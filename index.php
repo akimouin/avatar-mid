@@ -37,7 +37,7 @@
                 <div class="tab-pane fade" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
                 </div>
             </div>
-            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" style="display: none;">
+            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" >
                 <div class="mb-3">
                     <label for="" class="form-label">眼睛</label>
                     <div class="form-check">
@@ -136,6 +136,14 @@
             },
             false
         );
+        eyebtn.addEventListener(
+            "click",
+            function() {
+                const chose = document.querySelector("#colorbtn0");
+                chose.click();
+            },
+            false
+        );
         eyebox.appendChild(eyebtn);
     }
     //在畫面中製作顏色的按鈕
@@ -181,7 +189,7 @@
     const colorchange = (a, b) => {
         eyeitems[a].tint = colors[b];
     };
-    //待解決:連動問題
+    
     //撈取所有顏色按鈕
     const colorbtns = document.querySelectorAll(".colorbtn");
 
