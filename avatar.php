@@ -1,7 +1,7 @@
 <?php include __DIR__ . './parts/connect-db.php' ?>
 <?php include __DIR__ . './parts/html-head.php' ?>
 <?php include __DIR__ . './parts/navbar.php' ?>
-<div class="container border">
+<div class="container border"></div>
     <div class="row border">
         <div class="pictureFrame col-12 col-lg-6 border d-flex justify-content-center align-items-center" id="pictureFrame"></div>
         <div class="controlArea col-12 col-lg-6 border" id="controlArea">
