@@ -41,7 +41,7 @@
                 <div class="mb-3">
                     <label for="" class="form-label">眼睛</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eye"  value="0" checked>
+                        <input class="form-check-input" type="radio" name="eye" value="0" checked>
                         <label class="form-check-label" for="eye0">eye0
                         </label>
                     </div>
@@ -50,7 +50,8 @@
                         <label class="form-check-label" for="c0">c0
                         </label>
                     </div>
-                    <button type="submit" id="submit"  class="btn btn-primary">Submit</button>
+                    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" id="edit" class="btn btn-primary">Edit</button>
             </form>
             <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
                 資料新增成功
@@ -58,7 +59,8 @@
         </div>
         <div class="col-12 col-lg-6"></div>
         <div class="col-12 col-lg-6">
-            <button class="btn btn-primary" id="submitClick">保存形象</button></div>
+            <button class="btn btn-primary" id="submitClick">保存形象</button>
+        </div>
     </div>
 </div>
 <?php include __DIR__ . './parts/scripts.php' ?>
@@ -74,8 +76,15 @@
     pictureFrame.appendChild(avatar.view);
 
     //顏色列表
-    const colors = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff];
+    const colors = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f];
     const colors16 = colors;
+    let body = PIXI.Sprite.from('./avatar_img/basic/body.png');
+    body.anchor.set(0.5);
+    body.scale.set(1);
+    body.x = 240;
+    body.y = 170;
+    body.tint = 0xdda0dd;
+    avatar.stage.addChild(body);
 
     // async function getData() {
     //     const r = await fetch('sqldata.api.php', {
@@ -88,15 +97,15 @@
     // getData();
 
     //眼睛元件
-    const eyesvgs = ["./eyes/1.svg", "./eyes/2.svg"]; //之後要改為由資料庫引入
+    const eyesvgs = ["./avatar_img/eyes/0.png", "./avatar_img/eyes/1.png", "./avatar_img/eyes/2.png"]; //之後要改為由資料庫引入
     const eyeitems = [];
     for (let i = 0; i < eyesvgs.length; i++) {
         let eye = PIXI.Sprite.from(eyesvgs[i]);
         eye.anchor.set(0.5); //錨點
-        eye.scale.set(0.7); //大小
+        eye.scale.set(1); //大小
         //畫布上的位置
         eye.x = 240;
-        eye.y = 100;
+        eye.y = 170;
 
         eyeitems.push(eye); //存入陣列中備用
     }
@@ -107,9 +116,9 @@
     for (let x = 0; x < eyesvgs.length; x++) {
         const a = document.createElement("input");
         a.type = "radio";
-        a.name="eye";
-        a.id="eye"+x;
-        a.value=x;
+        a.name = "eye";
+        a.id = "eye" + x;
+        a.value = x;
         form1.appendChild(a);
         const eyebtn = document.createElement("button");
         eyebtn.className = "eyebtn";
@@ -147,13 +156,13 @@
         eyebox.appendChild(eyebtn);
     }
     //在畫面中製作顏色的按鈕
-    //發現會出現顏色不連動的BUG 還要再修改
+    //問題:發現會出現顏色不連動的BUG 還要再修改; 已解決
     for (let i = 0; i < colors.length; i++) {
         const a = document.createElement("input");
         a.type = "radio";
-        a.name="eyeColor";
-        a.id="ec"+i;
-        a.value=i;
+        a.name = "eyeColor";
+        a.id = "ec" + i;
+        a.value = i;
         form1.appendChild(a);
         const colorbtn = document.createElement("button");
         colorbtn.className = "colorbtn";
@@ -189,7 +198,7 @@
     const colorchange = (a, b) => {
         eyeitems[a].tint = colors[b];
     };
-    
+
     //撈取所有顏色按鈕
     const colorbtns = document.querySelectorAll(".colorbtn");
 
@@ -214,9 +223,10 @@
             );
         }
     };
-    const submitClick =document.querySelector('#submitClick');
-    submitClick.addEventListener("click", function(){
-        const submit =document.querySelector("#submit");
+
+    const submitClick = document.querySelector('#submitClick');
+    submitClick.addEventListener("click", function() {
+        const submit = document.querySelector("#submit");
         submit.click();
     })
     async function sendData() {
@@ -229,4 +239,5 @@
         console.log(result);
     }
 </script>
+
 <?php include __DIR__ . './parts/html-foot.php' ?>
