@@ -11,15 +11,15 @@ $output = [
 ];
 
 $mid = '1';
-$eye = $_POST['eye'];
-$eyeColor = $_POST['eyeColor'];
+// $eyes = $_POST['eyes'];
+// $eyeColor = $_POST['eyeColor'];
 
-$combination = [
-    'eye' => $eye,
-    'eyeColor' => $eyeColor
-];
+// $combination = [
+//     'eyes' => $eyes,
+//     'eyeColor' => $eyeColor
+// ];
 
-$combinationJSON = json_encode($combination, JSON_UNESCAPED_UNICODE);
+$combinationJSON = json_encode($_POST, JSON_UNESCAPED_UNICODE);
 
 $sql = "INSERT INTO `showcase`(
     `member_sid`, `combination`, `avatar_created_at`

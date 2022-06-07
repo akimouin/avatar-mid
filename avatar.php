@@ -37,18 +37,14 @@
                 <div class="tab-pane fade" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
                 </div>
             </div>
-            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" style="display: none;">
+            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;">
                 <div class="mb-3">
                     <label for="" class="form-label">眼睛</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eye" value="0" checked>
-                        <label class="form-check-label" for="eye0">eye0
-                        </label>
+                        <input class="form-check-input" type="radio" name="eyes" value="0" checked>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eyeColor" value="0" checked>
-                        <label class="form-check-label" for="c0">c0
-                        </label>
+                        <input class="form-check-input" type="radio" name="eyesColor" value="0" checked>
                     </div>
                     <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                     <button type="submit" id="edit" class="btn btn-primary">Edit</button>
@@ -87,27 +83,20 @@
     body.scale.set(0.5);
     body.x = 240;
     body.y = 250;
+    body.zIndex = 1;
     body.tint = 0xdda0dd;
     avatar.stage.addChild(body);
 
     //顏色列表
     const colors = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f];
-    
 
-    // async function getData() {
-    //     const r = await fetch('sqldata.api.php', {
-    //         method: 'POST',
-    //         //body: fd,
-    //     });
-    //     const result = await r.json();
-    //     console.log(result);
-    // }
-    // getData();
-
+    //部位總表
+    const parts = ['eyes', 'ear', 'hair', 'mouth', 'nose']
 
     //眼睛元件
     const eyesimgs = ["./avatar_img/eyes/0.png", "./avatar_img/eyes/1.png", "./avatar_img/eyes/2.png"]; //之後要改為由資料庫引入
-    const eyesitems = [];
+    const items = [];
+    items[0] = [];
     for (let i = 0; i < eyesimgs.length; i++) {
         let eye = PIXI.Sprite.from(eyesimgs[i]);
         eye.anchor.set(0.5); //錨點
@@ -115,14 +104,44 @@
         //畫布上的位置
         eye.x = 240;
         eye.y = 250;
-
-        eyesitems.push(eye); //存入陣列中備用
+        eye.zIndex = 2;
+        items[0].push(eye); //存入陣列中備用
     }
-    avatar.stage.addChild(eyesitems[0]);
+    avatar.stage.addChild(items[0][0]);
+
+    //鼻子元件
+    const noseimgs = ["./avatar_img/nose/0.png"]; //之後要改為由資料庫引入
+    items[1] = [];
+    for (let i = 0; i < noseimgs.length; i++) {
+        let nose = PIXI.Sprite.from(noseimgs[i]);
+        nose.anchor.set(0.5); //錨點
+        nose.scale.set(0.5); //大小
+        //畫布上的位置
+        nose.x = 240;
+        nose.y = 250;
+        nose.zIndex = 2;
+        items[1].push(nose); //存入陣列中備用
+    }
+    avatar.stage.addChild(items[1][0]);
+
+    //嘴巴元件
+    const mouthimgs = ["./avatar_img/mouth/0.png"]; //之後要改為由資料庫引入
+    items[2] = [];
+    for (let i = 0; i < mouthimgs.length; i++) {
+        let mouth = PIXI.Sprite.from(mouthimgs[i]);
+        mouth.anchor.set(0.5); //錨點
+        mouth.scale.set(0.5); //大小
+        //畫布上的位置
+        mouth.x = 240;
+        mouth.y = 250;
+        mouth.zIndex = 2;
+        items[2].push(mouth); //存入陣列中備用
+    }
+    avatar.stage.addChild(items[2][0]);
 
     //耳朵元件
     const earimgs = ["./avatar_img/ear/0.png"]; //之後要改為由資料庫引入
-    const earitems = [];
+    items[3] = [];
     for (let i = 0; i < earimgs.length; i++) {
         let ear = PIXI.Sprite.from(earimgs[i]);
         ear.anchor.set(0.5); //錨點
@@ -130,46 +149,66 @@
         //畫布上的位置
         ear.x = 240;
         ear.y = 250;
-        earitems.push(ear); //存入陣列中備用
+        ear.zIndex = 0;
+        ear.tint = 0xdda0dd;
+        items[3].push(ear); //存入陣列中備用
     }
-    avatar.stage.addChild(earitems[0]);
+    avatar.stage.addChild(items[3][0]);
+
+    //頭髮元件
+    const hairimgs = ["./avatar_img/hair/0.png"]; //之後要改為由資料庫引入
+    items[4] = [];
+    for (let i = 0; i < hairimgs.length; i++) {
+        let hair = PIXI.Sprite.from(hairimgs[i]);
+        hair.anchor.set(0.5); //錨點
+        hair.scale.set(0.5); //大小
+        //畫布上的位置
+        hair.x = 240;
+        hair.y = 250;
+        hair.zIndex = 2;
+        items[4].push(hair); //存入陣列中備用
+    }
+    avatar.stage.addChild(items[4][0]);
+    
+    //調整圖層的前後順序
+    avatar.stage.sortChildren();
 
 
     const form1 = document.querySelector('#form1');
     const eyesbox = document.querySelector("#eyesbox");
-    for (let x = 0; x < eyesimgs.length; x++) {
+    for (let x = 0; x < items[0].length; x++) {
         const a = document.createElement("input");
         a.type = "radio";
-        a.name = "eye";
-        a.id = "eye" + x;
+        a.name = parts[0];
+        a.id = parts[0] + x;
         a.value = x;
         form1.appendChild(a);
-        const eyebtn = document.createElement("button");
-        eyebtn.className = "eyebtn";
-        eyebtn.innerText = "eye" + x;
-        eyebtn.addEventListener(
+        const b = document.createElement("button");
+        b.className = parts[0] + "btn";
+        b.innerText = parts[0] + x;
+        b.addEventListener(
             "click",
             function() {
                 svgChange(x);
             },
             false
         );
-        eyebtn.addEventListener(
+        b.addEventListener(
             "click",
             function() {
                 colorEvent(x);
             },
             false
         );
-        eyebtn.addEventListener(
+        b.addEventListener(
             "click",
             function() {
-                const chose = document.querySelector("#eye" + x);
+                const chose = document.querySelector("#" + parts[0] + x);
                 chose.click();
             },
             false
         );
-        eyebtn.addEventListener(
+        b.addEventListener(
             "click",
             function() {
                 const chose = document.querySelector("#colorbtn0");
@@ -177,50 +216,50 @@
             },
             false
         );
-        eyesbox.appendChild(eyebtn);
+        eyesbox.appendChild(b);
     }
     //在畫面中製作顏色的按鈕
     //問題:發現會出現顏色不連動的BUG 還要再修改; 已解決
     for (let i = 0; i < colors.length; i++) {
         const a = document.createElement("input");
         a.type = "radio";
-        a.name = "eyeColor";
-        a.id = "ec" + i;
+        a.name = parts[0] + "Color";
+        a.id = parts[0] + "Color" + i;
         a.value = i;
         form1.appendChild(a);
-        const colorbtn = document.createElement("button");
-        colorbtn.className = "colorbtn";
-        colorbtn.id = "colorbtn" + i;
-        colorbtn.innerText = colors[i].toString(16);
-        colorbtn.style.backgroundColor = "#" + colors[i].toString(16);
-        colorbtn.addEventListener(
+        const b = document.createElement("button");
+        b.className = "colorbtn";
+        b.id = "colorbtn" + i;
+        b.innerText = colors[i].toString(16);
+        b.style.backgroundColor = "#" + colors[i].toString(16);
+        b.addEventListener(
             "click",
             function() {
                 colorchange(0, i);
             },
             false
         );
-        colorbtn.addEventListener(
+        b.addEventListener(
             "click",
             function() {
-                const chose = document.querySelector("#ec" + i);
+                const chose = document.querySelector("#"+parts[0] + "Color" + i);
                 chose.click();
             },
             false
         );
-        eyesbox.appendChild(colorbtn);
+        eyesbox.appendChild(b);
     }
 
     //變更圖片
     const svgChange = (a) => {
-        for (let i = 0; i < eyesimgs.length; i++) {
-            avatar.stage.removeChild(eyesitems[i]);
+        for (let i = 0; i < items[0].length; i++) {
+            avatar.stage.removeChild(items[0][i]);
         }
-        avatar.stage.addChild(eyesitems[a]);
+        avatar.stage.addChild(items[0][a]);
     };
     //變更顏色
     const colorchange = (a, b) => {
-        eyesitems[a].tint = colors[b];
+        items[0][a].tint = colors[b];
     };
 
     //撈取所有顏色按鈕
@@ -229,7 +268,7 @@
     //為顏色按鈕加上function
     const colorEvent = (x) => {
         for (let c = 0; c < colors.length; c++) {
-            for (let i = 0; i < eyesimgs.length; i++) {
+            for (let i = 0; i < items[0].length; i++) {
                 colorbtns[c].removeEventListener(
                     "click",
                     function() {
