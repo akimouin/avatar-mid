@@ -24,27 +24,35 @@
             </ul>
 
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="eyesbox" role="tabpanel" aria-labelledby="eye-tab">
+                <div class="tab-pane fade show active boxes" id="eyesbox" role="tabpanel" aria-labelledby="eye-tab">
                     eyes
                 </div>
-                <div class="tab-pane fade" id="nosebox" role="tabpanel" aria-labelledby="nose-tab">
+                <div class="tab-pane fade boxes" id="nosebox" role="tabpanel" aria-labelledby="nose-tab">
                     nose
                 </div>
-                <div class="tab-pane fade" id="mouthbox" role="tabpanel" aria-labelledby="mouth-tab">mouth
+                <div class="tab-pane fade boxes" id="mouthbox" role="tabpanel" aria-labelledby="mouth-tab">mouth
                 </div>
-                <div class="tab-pane fade" id="earbox" role="tabpanel" aria-labelledby="ear-tab">ear
+                <div class="tab-pane fade boxes" id="earbox" role="tabpanel" aria-labelledby="ear-tab">ear
                 </div>
-                <div class="tab-pane fade" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
+                <div class="tab-pane fade boxes" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
                 </div>
             </div>
-            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;">
+            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" style="display:none;">
                 <div class="mb-3">
                     <label for="" class="form-label">眼睛</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="eyes" value="0" checked>
+                        <input class="form-check-input" type="radio" name="nose" value="0" checked>
+                        <input class="form-check-input" type="radio" name="mouth" value="0" checked>
+                        <input class="form-check-input" type="radio" name="ear" value="0" checked>
+                        <input class="form-check-input" type="radio" name="hair" value="0" checked>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="eyesColor" value="0" checked>
+                        <input class="form-check-input" type="radio" name="noseColor" value="0" checked>
+                        <input class="form-check-input" type="radio" name="mouthColor" value="0" checked>
+                        <input class="form-check-input" type="radio" name="earColor" value="0" checked>
+                        <input class="form-check-input" type="radio" name="hairColor" value="0" checked>
                     </div>
                     <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                     <button type="submit" id="edit" class="btn btn-primary">Edit</button>
@@ -91,7 +99,7 @@
     const colors = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f];
 
     //部位總表
-    const parts = ['eyes', 'ear', 'hair', 'mouth', 'nose']
+    const parts = ['eyes', 'nose', 'mouth', 'ear', 'hair']
 
     //眼睛元件
     const eyesimgs = ["./avatar_img/eyes/0.png", "./avatar_img/eyes/1.png", "./avatar_img/eyes/2.png"]; //之後要改為由資料庫引入
@@ -169,110 +177,112 @@
         items[4].push(hair); //存入陣列中備用
     }
     avatar.stage.addChild(items[4][0]);
-    
+
     //調整圖層的前後順序
     avatar.stage.sortChildren();
 
 
     const form1 = document.querySelector('#form1');
-    const eyesbox = document.querySelector("#eyesbox");
-    for (let x = 0; x < items[0].length; x++) {
-        const a = document.createElement("input");
-        a.type = "radio";
-        a.name = parts[0];
-        a.id = parts[0] + x;
-        a.value = x;
-        form1.appendChild(a);
-        const b = document.createElement("button");
-        b.className = parts[0] + "btn";
-        b.innerText = parts[0] + x;
-        b.addEventListener(
-            "click",
-            function() {
-                svgChange(x);
-            },
-            false
-        );
-        b.addEventListener(
-            "click",
-            function() {
-                colorEvent(x);
-            },
-            false
-        );
-        b.addEventListener(
-            "click",
-            function() {
-                const chose = document.querySelector("#" + parts[0] + x);
-                chose.click();
-            },
-            false
-        );
-        b.addEventListener(
-            "click",
-            function() {
-                const chose = document.querySelector("#colorbtn0");
-                chose.click();
-            },
-            false
-        );
-        eyesbox.appendChild(b);
-    }
+    const boxes = document.querySelectorAll('.boxes');
+    for (let f = 0; f < parts.length; f++) {
+        for (let x = 0; x < items[f].length; x++) {
+            const a = document.createElement("input");
+            a.type = "radio";
+            a.name = parts[f];
+            a.id = parts[f] + x;
+            a.value = x;
+            form1.appendChild(a);
+            const b = document.createElement("button");
+            b.className = parts[f] + "btn";
+            b.innerText = parts[f] + x;
+            b.addEventListener(
+                "click",
+                function() {
+                    svgChange(x, f);
+                },
+                false
+            );
+            b.addEventListener(
+                "click",
+                function() {
+                    colorEvent(x, f);
+                },
+                false
+            );
+            b.addEventListener(
+                "click",
+                function() {
+                    const chose = document.querySelector("#" + parts[f] + x);
+                    chose.click();
+                },
+                false
+            );
+            b.addEventListener(
+                "click",
+                function() {
+                    const chose = document.querySelector("#"+parts[f]+"colorbtn0");
+                    chose.click();
+                },
+                false
+            );
+            boxes[f].appendChild(b);
+        }
+    
     //在畫面中製作顏色的按鈕
     //問題:發現會出現顏色不連動的BUG 還要再修改; 已解決
     for (let i = 0; i < colors.length; i++) {
         const a = document.createElement("input");
         a.type = "radio";
-        a.name = parts[0] + "Color";
-        a.id = parts[0] + "Color" + i;
+        a.name = parts[f] + "Color";
+        a.id = parts[f] + "Color" + i;
         a.value = i;
         form1.appendChild(a);
         const b = document.createElement("button");
-        b.className = "colorbtn";
-        b.id = "colorbtn" + i;
+        b.className = parts[f] + "colorbtn";
+        b.id = parts[f] + "colorbtn" + i;
         b.innerText = colors[i].toString(16);
         b.style.backgroundColor = "#" + colors[i].toString(16);
         b.addEventListener(
             "click",
             function() {
-                colorchange(0, i);
+                colorchange(0, i, f);
             },
             false
         );
         b.addEventListener(
             "click",
             function() {
-                const chose = document.querySelector("#"+parts[0] + "Color" + i);
+                const chose = document.querySelector("#" + parts[f] + "Color" + i);
                 chose.click();
             },
             false
         );
-        eyesbox.appendChild(b);
-    }
+        boxes[f].appendChild(b);
+    }}
 
     //變更圖片
-    const svgChange = (a) => {
-        for (let i = 0; i < items[0].length; i++) {
-            avatar.stage.removeChild(items[0][i]);
+    const svgChange = (a, f) => {
+        for (let i = 0; i < items[f].length; i++) {
+            avatar.stage.removeChild(items[f][i]);
         }
-        avatar.stage.addChild(items[0][a]);
+        avatar.stage.addChild(items[f][a]);
     };
     //變更顏色
-    const colorchange = (a, b) => {
-        items[0][a].tint = colors[b];
+    const colorchange = (a, b, f) => {
+        items[f][a].tint = colors[b];
     };
 
     //撈取所有顏色按鈕
-    const colorbtns = document.querySelectorAll(".colorbtn");
+    const colorbtns = document.querySelectorAll("."+parts[0]+"colorbtn");
 
     //為顏色按鈕加上function
-    const colorEvent = (x) => {
+    const colorEvent = (x, f) => {
         for (let c = 0; c < colors.length; c++) {
-            for (let i = 0; i < items[0].length; i++) {
+            for (let i = 0; i < items[f].length; i++) {
                 colorbtns[c].removeEventListener(
                     "click",
                     function() {
-                        colorchange(i, c);
+                        colorchange(i, c, f);
                     },
                     false
                 );
@@ -280,7 +290,7 @@
             colorbtns[c].addEventListener(
                 "click",
                 function() {
-                    colorchange(x, c);
+                    colorchange(x, c, f);
                 },
                 false
             );
