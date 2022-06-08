@@ -40,6 +40,9 @@
             <a href="javascript: delete_it(${g})">
             刪除
             </a>
+            <a href="javascript: edit_it(${g})">
+            修改
+            </a>
             <p>${f}</p>
             <p>${h}</p>
         </div>`;
@@ -60,8 +63,11 @@
 
     function delete_it(sid) {
         if (confirm(`確定要刪除編號為 ${sid} 的資料嗎?`)) {
-            location.href = `order-delete-api.php?sid=${sid}`;
+            location.href = `./order-delete-api.php?sid=${sid}`;
         }
+    }
+    function edit_it(sid) {
+        location.href = `./avatar.php?avatarid=${sid}`;
     }
     getData();
 </script>

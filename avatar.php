@@ -69,7 +69,8 @@
         </div>
         <div class="col-12 col-lg-7"></div>
         <div class="col-12 col-lg-5">
-            <button class="btn btn-primary" id="submitClick">保存形象</button>
+            <button class="btn btn-success" id="submitClick">保存形象</button>
+            <a href="./showcase.php" class="btn btn-info">我的衣櫥</a>
         </div>
     </div>
 </div>
