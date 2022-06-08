@@ -103,7 +103,12 @@
     avatar.stage.addChild(body);
 
     //顏色列表
-    const colors = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f, 0xffd700];
+    const colors = [];
+    colors[0] = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f, 0xffd700, 0xed1848];
+    colors[1] = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f, 0xffd700];
+    colors[2] = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f, 0xffd700];
+    colors[3] = [0xdda0dd, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f, 0xffd700];
+    colors[4] = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f, 0xffd700, 0xaee0d7];
 
     //部位總表
     const parts = ['eyes', 'nose', 'mouth', 'ear', 'hair']
@@ -237,7 +242,7 @@
 
         //在畫面中製作顏色的按鈕
         //問題:發現會出現顏色不連動的BUG 還要再修改; 已解決
-        for (let i = 0; i < colors.length; i++) {
+        for (let i = 0; i < colors[f].length; i++) {
             const a = document.createElement("input");
             a.type = "radio";
             a.name = parts[f] + "Color";
@@ -247,8 +252,8 @@
             const b = document.createElement("button");
             b.className = parts[f] + "colorbtn";
             b.id = parts[f] + "colorbtn" + i;
-            b.innerText = colors[i].toString(16);
-            b.style.backgroundColor = "#" + colors[i].toString(16);
+            b.innerText = colors[f][i].toString(16);
+            b.style.backgroundColor = "#" + colors[f][i].toString(16);
             b.addEventListener(
                 "click",
                 function() {
@@ -277,7 +282,7 @@
     };
     //變更顏色
     const colorchange = (a, b, f) => {
-        items[f][a].tint = colors[b];
+        items[f][a].tint = colors[f][b];
     };
 
     //為顏色按鈕加上function
@@ -285,7 +290,7 @@
         //撈取所有顏色按鈕
         const colorbtns = document.querySelectorAll("." + parts[f] + "colorbtn");
         for (let i = 0; i < items[f].length; i++) {
-            for (let c = 0; c < colors.length; c++) {
+            for (let c = 0; c < colors[f].length; c++) {
                 colorbtns[c].removeEventListener(
                     "click",
                     function() {
@@ -295,7 +300,7 @@
                 );
             }
         }
-        for (let c = 0; c < colors.length; c++) {
+        for (let c = 0; c < colors[f].length; c++) {
             colorbtns[c].addEventListener(
                 "click",
                 function() {
