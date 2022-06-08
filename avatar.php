@@ -1,5 +1,14 @@
 <?php include __DIR__ . './parts/connect-db.php' ?>
 <?php include __DIR__ . './parts/html-head.php' ?>
+<style>
+    .boxes button{
+        width: 50px;
+        height: 50px;
+        border-radius: 10%;
+        border: none;
+        margin-right: 10px;
+    }
+</style>
 <?php include __DIR__ . './parts/navbar.php' ?>
 <div class="container border-top mt-5">
     <div class="row">
@@ -25,16 +34,14 @@
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active boxes" id="eyesbox" role="tabpanel" aria-labelledby="eye-tab">
-                    eyes
                 </div>
                 <div class="tab-pane fade boxes" id="nosebox" role="tabpanel" aria-labelledby="nose-tab">
-                    nose
                 </div>
-                <div class="tab-pane fade boxes" id="mouthbox" role="tabpanel" aria-labelledby="mouth-tab">mouth
+                <div class="tab-pane fade boxes" id="mouthbox" role="tabpanel" aria-labelledby="mouth-tab">
                 </div>
-                <div class="tab-pane fade boxes" id="earbox" role="tabpanel" aria-labelledby="ear-tab">ear
+                <div class="tab-pane fade boxes" id="earbox" role="tabpanel" aria-labelledby="ear-tab">
                 </div>
-                <div class="tab-pane fade boxes" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
+                <div class="tab-pane fade boxes" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">
                 </div>
             </div>
             <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" style="display:none;">
@@ -207,7 +214,7 @@
             form1.appendChild(a);
             const b = document.createElement("button");
             b.className = parts[f] + "btn";
-            b.innerText = parts[f] + x;
+            b.innerText = x;
             b.addEventListener(
                 "click",
                 function() {
@@ -253,7 +260,7 @@
             const b = document.createElement("button");
             b.className = parts[f] + "colorbtn";
             b.id = parts[f] + "colorbtn" + i;
-            b.innerText = colors[f][i].toString(16);
+            b.innerText = "c" + i;
             b.style.backgroundColor = "#" + colors[f][i].toString(16);
             b.addEventListener(
                 "click",
