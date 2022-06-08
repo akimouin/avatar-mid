@@ -279,7 +279,7 @@
     const colorchange = (a, b, f) => {
         items[f][a].tint = colors[b];
     };
-    
+
     //為顏色按鈕加上function
     const colorEvent = (x, f) => {
         //撈取所有顏色按鈕
@@ -314,10 +314,10 @@
     async function sendData() {
         const fd = new FormData(document.form1);
         console.log(fd);
-        let aPi = 'order-add-api.php';
+        let aPi = './order-add-api.php';
         if (location.search.length > 0) {
             console.log(111);
-            aPi = 'abc';
+            aPi = './order-edit-api.php';
         };
         const r = await fetch(aPi, {
             method: 'POST',
@@ -331,11 +331,16 @@
     if (location.search.length > 0) {
         submitClick.innerText = '修改形象';
         console.log('search is alive!!');
+        const inputAID = document.createElement('input');
+        inputAID.type = 'text';
+        inputAID.name = 'aid';
+        inputAID.value = location.search.slice(10);
+        form1.appendChild(inputAID);
         const avatarID = document.querySelector("#avatarID");
         avatarID.value = location.search.slice(10);
         async function getEditdata() {
             const fd = new FormData(document.form2);
-            const r = await fetch('get-edit-data-api.php', {
+            const r = await fetch('./get-edit-data-api.php', {
                 method: 'POST',
                 body: fd,
             });
