@@ -279,12 +279,11 @@
     const colorchange = (a, b, f) => {
         items[f][a].tint = colors[b];
     };
-
-    //撈取所有顏色按鈕
-    const colorbtns = document.querySelectorAll("." + parts[0] + "colorbtn");
-
+    
     //為顏色按鈕加上function
     const colorEvent = (x, f) => {
+        //撈取所有顏色按鈕
+        const colorbtns = document.querySelectorAll("." + parts[f] + "colorbtn");
         for (let i = 0; i < items[f].length; i++) {
             for (let c = 0; c < colors.length; c++) {
                 colorbtns[c].removeEventListener(
@@ -315,7 +314,12 @@
     async function sendData() {
         const fd = new FormData(document.form1);
         console.log(fd);
-        const r = await fetch('order-add-api.php', {
+        let aPi = 'order-add-api.php';
+        if (location.search.length > 0) {
+            console.log(111);
+            aPi = 'abc';
+        };
+        const r = await fetch(aPi, {
             method: 'POST',
             body: fd,
         });
@@ -323,10 +327,12 @@
         console.log(result);
     }
 
+    //如果有location.search會變成修改
     if (location.search.length > 0) {
+        submitClick.innerText = '修改形象';
         console.log('search is alive!!');
         const avatarID = document.querySelector("#avatarID");
-        avatarID.value=location.search.slice(10);
+        avatarID.value = location.search.slice(10);
         async function getEditdata() {
             const fd = new FormData(document.form2);
             const r = await fetch('get-edit-data-api.php', {
@@ -334,7 +340,16 @@
                 body: fd,
             });
             const result = await r.json();
-            console.log(result);
+            const a = JSON.parse(result[0]['combination']);
+            for (i = 0; i < parts.length; i++) {
+                const btns = document.querySelectorAll("." + parts[i] + "btn");
+                const colorbtns = document.querySelectorAll("." + parts[i] + "colorbtn");
+                btns[a[parts[i]]].click();
+                colorbtns[a[parts[i] + "Color"]].click();
+                // console.log(a[parts[i]]);
+                // console.log(a[parts[i] + "Color"]);
+            }
+
         }
         getEditdata();
     }
