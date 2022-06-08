@@ -22,11 +22,33 @@
                 <button class="nav-link" id="hair-tab" data-bs-toggle="tab" data-bs-target="#hairbox" type="button" role="tab" aria-controls="hairbox" aria-selected="false">hair</button>
             </li>
         </ul>
+<div class="container border-top mt-5">
+    <div class="row">
+        <div class="pictureFrame col-12 col-lg-7 d-flex justify-content-center align-items-center border" id="pictureFrame"></div>
+        <div class="controlArea col-12 col-lg-5 border" id="controlArea">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="eye-tab" data-bs-toggle="tab" data-bs-target="#eyesbox" type="button" role="tab" aria-controls="eyesbox" aria-selected="true">Eye</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="nose-tab" data-bs-toggle="tab" data-bs-target="#nosebox" type="button" role="tab" aria-controls="nosebox" aria-selected="false">nose</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="mouth-tab" data-bs-toggle="tab" data-bs-target="#mouthbox" type="button" role="tab" aria-controls="mouthbox" aria-selected="false">mouth</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ear-tab" data-bs-toggle="tab" data-bs-target="#earbox" type="button" role="tab" aria-controls="earbox" aria-selected="false">ear</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="hair-tab" data-bs-toggle="tab" data-bs-target="#hairbox" type="button" role="tab" aria-controls="hairbox" aria-selected="false">hair</button>
+                </li>
+            </ul>
 
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active boxes" id="eyesbox" role="tabpanel" aria-labelledby="eye-tab">
                 eyes
             </div>
+<<<<<<< HEAD
             <div class="tab-pane fade boxes" id="nosebox" role="tabpanel" aria-labelledby="nose-tab">
                 nose
             </div>
@@ -59,6 +81,41 @@
         </form>
         <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
             資料新增成功
+=======
+            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" style="display:none;">
+                <div class="mb-3">
+                    <label for="" class="form-label">眼睛</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="eyes" value="0" checked>
+                        <input class="form-check-input" type="radio" name="nose" value="0" checked>
+                        <input class="form-check-input" type="radio" name="mouth" value="0" checked>
+                        <input class="form-check-input" type="radio" name="ear" value="0" checked>
+                        <input class="form-check-input" type="radio" name="hair" value="0" checked>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="eyesColor" value="0" checked>
+                        <input class="form-check-input" type="radio" name="noseColor" value="0" checked>
+                        <input class="form-check-input" type="radio" name="mouthColor" value="0" checked>
+                        <input class="form-check-input" type="radio" name="earColor" value="0" checked>
+                        <input class="form-check-input" type="radio" name="hairColor" value="0" checked>
+                    </div>
+                    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" id="edit" class="btn btn-primary">Edit</button>
+            </form>
+            <form action="" name="form2" id="form2" onsubmit="return false;" style="display:none;">
+                <div class="mb-3">
+                    <label for="avatarID" class="form-label">avatarID</label>
+                    <input type="text" class="form-control" id="avatarID" name="avatarID">
+                </div>
+            </form>
+            <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
+                資料新增成功
+            </div>
+        </div>
+        <div class="col-12 col-lg-7"></div>
+        <div class="col-12 col-lg-5">
+            <button class="btn btn-primary" id="submitClick">保存形象</button>
+>>>>>>> 0902b4b96e47b35580a309a34016728d602cd631
         </div>
     </div>
     <div class="col-12 col-lg-6"></div>
@@ -67,13 +124,14 @@
     </div>
 </div>
 </div>
+
 <?php include __DIR__ . './parts/scripts.php' ?>
 <script src="https://pixijs.download/release/pixi.js"></script>
 <script>
     //畫布定義
     const pictureFrame = document.querySelector("#pictureFrame");
     let avatar = new PIXI.Application({
-        width: 480,
+        width: 500,
         height: 500
     });
     avatar.renderer.backgroundColor = 0x2f4f4f;
@@ -96,7 +154,7 @@
     avatar.stage.addChild(body);
 
     //顏色列表
-    const colors = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f];
+    const colors = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f, 0xffd700];
 
     //部位總表
     const parts = ['eyes', 'nose', 'mouth', 'ear', 'hair']
@@ -272,14 +330,20 @@
     const colorchange = (a, b, f) => {
         items[f][a].tint = colors[b];
     };
+<<<<<<< HEAD
 
     //撈取所有顏色按鈕
     const colorbtns = document.querySelectorAll("." + parts[0] + "colorbtn");
 
+=======
+    
+>>>>>>> 0902b4b96e47b35580a309a34016728d602cd631
     //為顏色按鈕加上function
     const colorEvent = (x, f) => {
-        for (let c = 0; c < colors.length; c++) {
-            for (let i = 0; i < items[f].length; i++) {
+        //撈取所有顏色按鈕
+        const colorbtns = document.querySelectorAll("." + parts[f] + "colorbtn");
+        for (let i = 0; i < items[f].length; i++) {
+            for (let c = 0; c < colors.length; c++) {
                 colorbtns[c].removeEventListener(
                     "click",
                     function() {
@@ -288,6 +352,8 @@
                     false
                 );
             }
+        }
+        for (let c = 0; c < colors.length; c++) {
             colorbtns[c].addEventListener(
                 "click",
                 function() {
@@ -305,12 +371,45 @@
     })
     async function sendData() {
         const fd = new FormData(document.form1);
-        const r = await fetch('order-add-api.php', {
+        console.log(fd);
+        let aPi = 'order-add-api.php';
+        if (location.search.length > 0) {
+            console.log(111);
+            aPi = 'abc';
+        };
+        const r = await fetch(aPi, {
             method: 'POST',
             body: fd,
         });
         const result = await r.json();
         console.log(result);
+    }
+
+    //如果有location.search會變成修改
+    if (location.search.length > 0) {
+        submitClick.innerText = '修改形象';
+        console.log('search is alive!!');
+        const avatarID = document.querySelector("#avatarID");
+        avatarID.value = location.search.slice(10);
+        async function getEditdata() {
+            const fd = new FormData(document.form2);
+            const r = await fetch('get-edit-data-api.php', {
+                method: 'POST',
+                body: fd,
+            });
+            const result = await r.json();
+            const a = JSON.parse(result[0]['combination']);
+            for (i = 0; i < parts.length; i++) {
+                const btns = document.querySelectorAll("." + parts[i] + "btn");
+                const colorbtns = document.querySelectorAll("." + parts[i] + "colorbtn");
+                btns[a[parts[i]]].click();
+                colorbtns[a[parts[i] + "Color"]].click();
+                // console.log(a[parts[i]]);
+                // console.log(a[parts[i] + "Color"]);
+            }
+
+        }
+        getEditdata();
     }
 </script>
 
