@@ -2,70 +2,70 @@
 <?php include __DIR__ . './parts/html-head.php' ?>
 <?php include __DIR__ . './parts/navbar.php' ?>
 <div class="container border"></div>
-    <div class="row border">
-        <div class="pictureFrame col-12 col-lg-6 border d-flex justify-content-center align-items-center" id="pictureFrame"></div>
-        <div class="controlArea col-12 col-lg-6 border" id="controlArea">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="eye-tab" data-bs-toggle="tab" data-bs-target="#eyesbox" type="button" role="tab" aria-controls="eyesbox" aria-selected="true">Eye</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="nose-tab" data-bs-toggle="tab" data-bs-target="#nosebox" type="button" role="tab" aria-controls="nosebox" aria-selected="false">nose</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="mouth-tab" data-bs-toggle="tab" data-bs-target="#mouthbox" type="button" role="tab" aria-controls="mouthbox" aria-selected="false">mouth</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="ear-tab" data-bs-toggle="tab" data-bs-target="#earbox" type="button" role="tab" aria-controls="earbox" aria-selected="false">ear</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="hair-tab" data-bs-toggle="tab" data-bs-target="#hairbox" type="button" role="tab" aria-controls="hairbox" aria-selected="false">hair</button>
-                </li>
-            </ul>
+<div class="row border">
+    <div class="pictureFrame col-12 col-lg-6 border d-flex justify-content-center align-items-center" id="pictureFrame"></div>
+    <div class="controlArea col-12 col-lg-6 border" id="controlArea">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="eye-tab" data-bs-toggle="tab" data-bs-target="#eyesbox" type="button" role="tab" aria-controls="eyesbox" aria-selected="true">Eye</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="nose-tab" data-bs-toggle="tab" data-bs-target="#nosebox" type="button" role="tab" aria-controls="nosebox" aria-selected="false">nose</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="mouth-tab" data-bs-toggle="tab" data-bs-target="#mouthbox" type="button" role="tab" aria-controls="mouthbox" aria-selected="false">mouth</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="ear-tab" data-bs-toggle="tab" data-bs-target="#earbox" type="button" role="tab" aria-controls="earbox" aria-selected="false">ear</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="hair-tab" data-bs-toggle="tab" data-bs-target="#hairbox" type="button" role="tab" aria-controls="hairbox" aria-selected="false">hair</button>
+            </li>
+        </ul>
 
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active boxes" id="eyesbox" role="tabpanel" aria-labelledby="eye-tab">
-                    eyes
-                </div>
-                <div class="tab-pane fade boxes" id="nosebox" role="tabpanel" aria-labelledby="nose-tab">
-                    nose
-                </div>
-                <div class="tab-pane fade boxes" id="mouthbox" role="tabpanel" aria-labelledby="mouth-tab">mouth
-                </div>
-                <div class="tab-pane fade boxes" id="earbox" role="tabpanel" aria-labelledby="ear-tab">ear
-                </div>
-                <div class="tab-pane fade boxes" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
-                </div>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active boxes" id="eyesbox" role="tabpanel" aria-labelledby="eye-tab">
+                eyes
             </div>
-            <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" style="display:none;">
-                <div class="mb-3">
-                    <label for="" class="form-label">眼睛</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eyes" value="0" checked>
-                        <input class="form-check-input" type="radio" name="nose" value="0" checked>
-                        <input class="form-check-input" type="radio" name="mouth" value="0" checked>
-                        <input class="form-check-input" type="radio" name="ear" value="0" checked>
-                        <input class="form-check-input" type="radio" name="hair" value="0" checked>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eyesColor" value="0" checked>
-                        <input class="form-check-input" type="radio" name="noseColor" value="0" checked>
-                        <input class="form-check-input" type="radio" name="mouthColor" value="0" checked>
-                        <input class="form-check-input" type="radio" name="earColor" value="0" checked>
-                        <input class="form-check-input" type="radio" name="hairColor" value="0" checked>
-                    </div>
-                    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
-                    <button type="submit" id="edit" class="btn btn-primary">Edit</button>
-            </form>
-            <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
-                資料新增成功
+            <div class="tab-pane fade boxes" id="nosebox" role="tabpanel" aria-labelledby="nose-tab">
+                nose
+            </div>
+            <div class="tab-pane fade boxes" id="mouthbox" role="tabpanel" aria-labelledby="mouth-tab">mouth
+            </div>
+            <div class="tab-pane fade boxes" id="earbox" role="tabpanel" aria-labelledby="ear-tab">ear
+            </div>
+            <div class="tab-pane fade boxes" id="hairbox" role="tabpanel" aria-labelledby="hair-tab">hair
             </div>
         </div>
-        <div class="col-12 col-lg-6"></div>
-        <div class="col-12 col-lg-6">
-            <button class="btn btn-primary" id="submitClick">保存形象</button>
+        <form action="" name="form1" id="form1" onsubmit="sendData(); return false;" style="display:none;">
+            <div class="mb-3">
+                <label for="" class="form-label">眼睛</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="eyes" value="0" checked>
+                    <input class="form-check-input" type="radio" name="nose" value="0" checked>
+                    <input class="form-check-input" type="radio" name="mouth" value="0" checked>
+                    <input class="form-check-input" type="radio" name="ear" value="0" checked>
+                    <input class="form-check-input" type="radio" name="hair" value="0" checked>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="eyesColor" value="0" checked>
+                    <input class="form-check-input" type="radio" name="noseColor" value="0" checked>
+                    <input class="form-check-input" type="radio" name="mouthColor" value="0" checked>
+                    <input class="form-check-input" type="radio" name="earColor" value="0" checked>
+                    <input class="form-check-input" type="radio" name="hairColor" value="0" checked>
+                </div>
+                <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" id="edit" class="btn btn-primary">Edit</button>
+        </form>
+        <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
+            資料新增成功
         </div>
     </div>
+    <div class="col-12 col-lg-6"></div>
+    <div class="col-12 col-lg-6">
+        <button class="btn btn-primary" id="submitClick">保存形象</button>
+    </div>
+</div>
 </div>
 <?php include __DIR__ . './parts/scripts.php' ?>
 <script src="https://pixijs.download/release/pixi.js"></script>
@@ -220,45 +220,46 @@
             b.addEventListener(
                 "click",
                 function() {
-                    const chose = document.querySelector("#"+parts[f]+"colorbtn0");
+                    const chose = document.querySelector("#" + parts[f] + "colorbtn0");
                     chose.click();
                 },
                 false
             );
             boxes[f].appendChild(b);
         }
-    
-    //在畫面中製作顏色的按鈕
-    //問題:發現會出現顏色不連動的BUG 還要再修改; 已解決
-    for (let i = 0; i < colors.length; i++) {
-        const a = document.createElement("input");
-        a.type = "radio";
-        a.name = parts[f] + "Color";
-        a.id = parts[f] + "Color" + i;
-        a.value = i;
-        form1.appendChild(a);
-        const b = document.createElement("button");
-        b.className = parts[f] + "colorbtn";
-        b.id = parts[f] + "colorbtn" + i;
-        b.innerText = colors[i].toString(16);
-        b.style.backgroundColor = "#" + colors[i].toString(16);
-        b.addEventListener(
-            "click",
-            function() {
-                colorchange(0, i, f);
-            },
-            false
-        );
-        b.addEventListener(
-            "click",
-            function() {
-                const chose = document.querySelector("#" + parts[f] + "Color" + i);
-                chose.click();
-            },
-            false
-        );
-        boxes[f].appendChild(b);
-    }}
+
+        //在畫面中製作顏色的按鈕
+        //問題:發現會出現顏色不連動的BUG 還要再修改; 已解決
+        for (let i = 0; i < colors.length; i++) {
+            const a = document.createElement("input");
+            a.type = "radio";
+            a.name = parts[f] + "Color";
+            a.id = parts[f] + "Color" + i;
+            a.value = i;
+            form1.appendChild(a);
+            const b = document.createElement("button");
+            b.className = parts[f] + "colorbtn";
+            b.id = parts[f] + "colorbtn" + i;
+            b.innerText = colors[i].toString(16);
+            b.style.backgroundColor = "#" + colors[i].toString(16);
+            b.addEventListener(
+                "click",
+                function() {
+                    colorchange(0, i, f);
+                },
+                false
+            );
+            b.addEventListener(
+                "click",
+                function() {
+                    const chose = document.querySelector("#" + parts[f] + "Color" + i);
+                    chose.click();
+                },
+                false
+            );
+            boxes[f].appendChild(b);
+        }
+    }
 
     //變更圖片
     const svgChange = (a, f) => {
@@ -273,7 +274,7 @@
     };
 
     //撈取所有顏色按鈕
-    const colorbtns = document.querySelectorAll("."+parts[0]+"colorbtn");
+    const colorbtns = document.querySelectorAll("." + parts[0] + "colorbtn");
 
     //為顏色按鈕加上function
     const colorEvent = (x, f) => {
