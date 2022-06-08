@@ -1,10 +1,10 @@
 <?php include __DIR__ . './parts/connect-db.php' ?>
 <?php include __DIR__ . './parts/html-head.php' ?>
 <?php include __DIR__ . './parts/navbar.php' ?>
-<div class="container border"></div>
-    <div class="row border">
-        <div class="pictureFrame col-12 col-lg-6 border d-flex justify-content-center align-items-center" id="pictureFrame"></div>
-        <div class="controlArea col-12 col-lg-6 border" id="controlArea">
+<div class="container border-top mt-5">
+    <div class="row">
+        <div class="pictureFrame col-12 col-lg-7 d-flex justify-content-center align-items-center border" id="pictureFrame"></div>
+        <div class="controlArea col-12 col-lg-5 border" id="controlArea">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="eye-tab" data-bs-toggle="tab" data-bs-target="#eyesbox" type="button" role="tab" aria-controls="eyesbox" aria-selected="true">Eye</button>
@@ -61,19 +61,20 @@
                 資料新增成功
             </div>
         </div>
-        <div class="col-12 col-lg-6"></div>
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-7"></div>
+        <div class="col-12 col-lg-5">
             <button class="btn btn-primary" id="submitClick">保存形象</button>
         </div>
     </div>
 </div>
+
 <?php include __DIR__ . './parts/scripts.php' ?>
 <script src="https://pixijs.download/release/pixi.js"></script>
 <script>
     //畫布定義
     const pictureFrame = document.querySelector("#pictureFrame");
     let avatar = new PIXI.Application({
-        width: 480,
+        width: 500,
         height: 500
     });
     avatar.renderer.backgroundColor = 0x2f4f4f;
@@ -220,45 +221,46 @@
             b.addEventListener(
                 "click",
                 function() {
-                    const chose = document.querySelector("#"+parts[f]+"colorbtn0");
+                    const chose = document.querySelector("#" + parts[f] + "colorbtn0");
                     chose.click();
                 },
                 false
             );
             boxes[f].appendChild(b);
         }
-    
-    //在畫面中製作顏色的按鈕
-    //問題:發現會出現顏色不連動的BUG 還要再修改; 已解決
-    for (let i = 0; i < colors.length; i++) {
-        const a = document.createElement("input");
-        a.type = "radio";
-        a.name = parts[f] + "Color";
-        a.id = parts[f] + "Color" + i;
-        a.value = i;
-        form1.appendChild(a);
-        const b = document.createElement("button");
-        b.className = parts[f] + "colorbtn";
-        b.id = parts[f] + "colorbtn" + i;
-        b.innerText = colors[i].toString(16);
-        b.style.backgroundColor = "#" + colors[i].toString(16);
-        b.addEventListener(
-            "click",
-            function() {
-                colorchange(0, i, f);
-            },
-            false
-        );
-        b.addEventListener(
-            "click",
-            function() {
-                const chose = document.querySelector("#" + parts[f] + "Color" + i);
-                chose.click();
-            },
-            false
-        );
-        boxes[f].appendChild(b);
-    }}
+
+        //在畫面中製作顏色的按鈕
+        //問題:發現會出現顏色不連動的BUG 還要再修改; 已解決
+        for (let i = 0; i < colors.length; i++) {
+            const a = document.createElement("input");
+            a.type = "radio";
+            a.name = parts[f] + "Color";
+            a.id = parts[f] + "Color" + i;
+            a.value = i;
+            form1.appendChild(a);
+            const b = document.createElement("button");
+            b.className = parts[f] + "colorbtn";
+            b.id = parts[f] + "colorbtn" + i;
+            b.innerText = colors[i].toString(16);
+            b.style.backgroundColor = "#" + colors[i].toString(16);
+            b.addEventListener(
+                "click",
+                function() {
+                    colorchange(0, i, f);
+                },
+                false
+            );
+            b.addEventListener(
+                "click",
+                function() {
+                    const chose = document.querySelector("#" + parts[f] + "Color" + i);
+                    chose.click();
+                },
+                false
+            );
+            boxes[f].appendChild(b);
+        }
+    }
 
     //變更圖片
     const svgChange = (a, f) => {
@@ -273,12 +275,12 @@
     };
 
     //撈取所有顏色按鈕
-    const colorbtns = document.querySelectorAll("."+parts[0]+"colorbtn");
+    const colorbtns = document.querySelectorAll("." + parts[0] + "colorbtn");
 
     //為顏色按鈕加上function
     const colorEvent = (x, f) => {
-        for (let c = 0; c < colors.length; c++) {
-            for (let i = 0; i < items[f].length; i++) {
+        for (let i = 0; i < items[f].length; i++) {
+            for (let c = 0; c < colors.length; c++) {
                 colorbtns[c].removeEventListener(
                     "click",
                     function() {
@@ -287,6 +289,8 @@
                     false
                 );
             }
+        }
+        for (let c = 0; c < colors.length; c++) {
             colorbtns[c].addEventListener(
                 "click",
                 function() {
