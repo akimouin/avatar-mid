@@ -97,7 +97,7 @@
     avatar.stage.addChild(body);
 
     //顏色列表
-    const colors = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f];
+    const colors = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f, 0xffd700];
 
     //部位總表
     const parts = ['eyes', 'nose', 'mouth', 'ear', 'hair']
@@ -308,12 +308,28 @@
     })
     async function sendData() {
         const fd = new FormData(document.form1);
+        console.log(fd);
         const r = await fetch('order-add-api.php', {
             method: 'POST',
             body: fd,
         });
         const result = await r.json();
         console.log(result);
+    }
+
+    if (location.search.length > 0) {
+        console.log('search is alive!!');
+        console.log(location.search.slice(10));
+        // async function getEditdata() {
+        //     //const avatarID = ;
+        //     const r = await fetch('get-edit-data-api.php', {
+        //         method: 'POST',
+        //         body: avatarID,
+        //     });
+        //     const result = await r.json();
+        //     console.log(result);
+        // }
+        // getEditdata();
     }
 </script>
 
