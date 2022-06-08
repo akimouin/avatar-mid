@@ -57,6 +57,12 @@
                     <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                     <button type="submit" id="edit" class="btn btn-primary">Edit</button>
             </form>
+            <form action="" name="form2" id="form2" onsubmit="return false;" style="display:none;">
+                <div class="mb-3">
+                    <label for="avatarID" class="form-label">avatarID</label>
+                    <input type="text" class="form-control" id="avatarID" name="avatarID">
+                </div>
+            </form>
             <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
                 資料新增成功
             </div>
@@ -319,17 +325,18 @@
 
     if (location.search.length > 0) {
         console.log('search is alive!!');
-        console.log(location.search.slice(10));
-        // async function getEditdata() {
-        //     //const avatarID = ;
-        //     const r = await fetch('get-edit-data-api.php', {
-        //         method: 'POST',
-        //         body: avatarID,
-        //     });
-        //     const result = await r.json();
-        //     console.log(result);
-        // }
-        // getEditdata();
+        const avatarID = document.querySelector("#avatarID");
+        avatarID.value=location.search.slice(10);
+        async function getEditdata() {
+            const fd = new FormData(document.form2);
+            const r = await fetch('get-edit-data-api.php', {
+                method: 'POST',
+                body: fd,
+            });
+            const result = await r.json();
+            console.log(result);
+        }
+        getEditdata();
     }
 </script>
 
