@@ -245,6 +245,11 @@
                 },
                 false
             );
+            b.addEventListener(
+                "click", function(){
+                    avatar.stage.sortChildren();
+                }, false
+            );
             boxes[f].appendChild(b);
         }
 
