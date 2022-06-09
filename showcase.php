@@ -1,5 +1,10 @@
 <?php include __DIR__ . './parts/connect-db.php' ?>
 <?php include __DIR__ . './parts/html-head.php' ?>
+<style>
+    body {
+        background-color: #2f4f4f;
+    }
+</style>
 <?php include __DIR__ . './parts/navbar.php' ?>
 <div class="container">
     <div class="row" id="showcase"></div>
