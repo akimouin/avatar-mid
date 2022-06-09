@@ -1,7 +1,10 @@
 <?php include __DIR__ . './parts/connect-db.php' ?>
 <?php include __DIR__ . './parts/html-head.php' ?>
 <style>
-    .boxes button{
+    body {
+        background-color: #2f4f4f;
+    }
+    .boxes button {
         width: 50px;
         height: 50px;
         border-radius: 10%;
@@ -246,7 +249,8 @@
                 false
             );
             b.addEventListener(
-                "click", function(){
+                "click",
+                function() {
                     avatar.stage.sortChildren();
                 }, false
             );
