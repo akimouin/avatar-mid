@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/parts/connect-db.php';
+require __DIR__ . './parts/connect_db.php';
 header('Content-Type: application/json');
 
 $sql = $pdo->query("SELECT * FROM `body_parts`")->fetchAll();

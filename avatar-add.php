@@ -1,4 +1,4 @@
-<?php include __DIR__ . './parts/connect-db.php';
+<?php include __DIR__ . './parts/connect_db.php';
 $pageName = 'ab-add';
 $title = '管理系統-新增部件';
 

@@ -1,4 +1,4 @@
-<?php include __DIR__ . './parts/connect-db.php' ?>
+<?php include __DIR__ . './parts/connect_db.php' ?>
 <?php include __DIR__ . './parts/html-head.php' ?>
 <style>
     body {
