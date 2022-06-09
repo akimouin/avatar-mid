@@ -46,14 +46,14 @@
 
 
 
-    const avatarBox = (f, g,) => {
+    const avatarBox = (f, g) => {
         return `
         <div class="avatarBox col-3">
-            <a href="javascript: delete_it(${g})">
-            刪除
-            </a>
-            <a href="javascript: edit_it(${g})">
+            <a href="javascript: edit_it(${g})" class="btn btn-info">
             修改
+            </a>
+            <a href="javascript: delete_it(${g})" class="btn btn-danger">
+            刪除
             </a>
             <p>${g}</p>
             <p>${f}</p>
@@ -66,10 +66,10 @@
         });
         const result = await r.json();
         console.log(result);
-        for (i = 0; i < result.length; i++) {
+        for (i = 0; i < 5; i++) {
             showcase.innerHTML += avatarBox(result[i].avatar_created_at, result[i].avatar_id);
         }
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < 5; i++) {
             const a = JSON.parse(result[i]['combination']);
             console.log(a);
             const avatarBoxes = document.querySelectorAll('.avatarBox');
@@ -96,70 +96,70 @@
             body.tint = 0xdda0dd;
             avatar.stage.addChild(body);
 
-                let eye = PIXI.Sprite.from(eyesimgs[a[parts[0]]]);
-                eye.anchor.set(0.5); //錨點
-                eye.scale.set(0.2); //大小
-                //畫布上的位置
-                eye.x = 100;
-                eye.y = 100;
-                eye.zIndex = 2;
-                eye.tint = colors[0][a[parts[0] + "Color"]];
-                //items[0].push(eye); //存入陣列中備用
-            
+            let eye = PIXI.Sprite.from(eyesimgs[a[parts[0]]]);
+            eye.anchor.set(0.5); //錨點
+            eye.scale.set(0.2); //大小
+            //畫布上的位置
+            eye.x = 100;
+            eye.y = 100;
+            eye.zIndex = 2;
+            eye.tint = colors[0][a[parts[0] + "Color"]];
+            //items[0].push(eye); //存入陣列中備用
+
             avatar.stage.addChild(eye);
 
             // items[1] = [];
             // for (let i = 0; i < noseimgs.length; i++) {
-                let nose = PIXI.Sprite.from(noseimgs[a[parts[1]]]);
-                nose.anchor.set(0.5); //錨點
-                nose.scale.set(0.2); //大小
-                //畫布上的位置
-                nose.x = 100;
-                nose.y = 100;
-                nose.zIndex = 2;
-                nose.tint = colors[1][a[parts[1] + "Color"]];
+            let nose = PIXI.Sprite.from(noseimgs[a[parts[1]]]);
+            nose.anchor.set(0.5); //錨點
+            nose.scale.set(0.2); //大小
+            //畫布上的位置
+            nose.x = 100;
+            nose.y = 100;
+            nose.zIndex = 2;
+            nose.tint = colors[1][a[parts[1] + "Color"]];
             //     items[1].push(nose); //存入陣列中備用
             // }
             avatar.stage.addChild(nose);
 
             // items[2] = [];
             // for (let i = 0; i < mouthimgs.length; i++) {
-                let mouth = PIXI.Sprite.from(mouthimgs[a[parts[2]]]);
-                mouth.anchor.set(0.5); //錨點
-                mouth.scale.set(0.2); //大小
-                //畫布上的位置
-                mouth.x = 100;
-                mouth.y = 100;
-                mouth.zIndex = 2;
-                mouth.tint = colors[2][a[parts[2] + "Color"]];
+            let mouth = PIXI.Sprite.from(mouthimgs[a[parts[2]]]);
+            mouth.anchor.set(0.5); //錨點
+            mouth.scale.set(0.2); //大小
+            //畫布上的位置
+            mouth.x = 100;
+            mouth.y = 100;
+            mouth.zIndex = 2;
+            mouth.tint = colors[2][a[parts[2] + "Color"]];
             //     items[2].push(mouth); //存入陣列中備用
             // }
             avatar.stage.addChild(mouth);
 
             // items[3] = [];
             // for (let i = 0; i < earimgs.length; i++) {
-                let ear = PIXI.Sprite.from(earimgs[a[parts[3]]]);
-                ear.anchor.set(0.5); //錨點
-                ear.scale.set(0.2); //大小
-                //畫布上的位置
-                ear.x = 100;
-                ear.y = 100;
-                ear.zIndex = 0;
-                ear.tint = colors[3][a[parts[3] + "Color"]];
+            let ear = PIXI.Sprite.from(earimgs[a[parts[3]]]);
+            ear.anchor.set(0.5); //錨點
+            ear.scale.set(0.2); //大小
+            //畫布上的位置
+            ear.x = 100;
+            ear.y = 100;
+            ear.zIndex = 0;
+            ear.tint = colors[3][a[parts[3] + "Color"]];
             //     items[3].push(ear); //存入陣列中備用
             // }
             avatar.stage.addChild(ear);
 
             // items[4] = [];
             // for (let i = 0; i < hairimgs.length; i++) {
-                let hair = PIXI.Sprite.from(hairimgs[a[parts[4]]]);
-                hair.anchor.set(0.5); //錨點
-                hair.scale.set(0.2); //大小
-                //畫布上的位置
-                hair.x = 100;
-                hair.y = 100;
-                hair.zIndex = 2;
-                hair.tint = colors[4][a[parts[4] + "Color"]];
+            let hair = PIXI.Sprite.from(hairimgs[a[parts[4]]]);
+            hair.anchor.set(0.5); //錨點
+            hair.scale.set(0.2); //大小
+            //畫布上的位置
+            hair.x = 100;
+            hair.y = 100;
+            hair.zIndex = 2;
+            hair.tint = colors[4][a[parts[4] + "Color"]];
             //     items[4].push(hair); //存入陣列中備用
             // }
             avatar.stage.addChild(hair);
