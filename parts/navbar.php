@@ -11,7 +11,7 @@
                         <a class="nav-link active" aria-current="page" href="./avatar.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./showcase.php">1</a>
+                        <a class="nav-link" href="./avatar-showcase.php">1</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./sqldata.api.php">2</a>

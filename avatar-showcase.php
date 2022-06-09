@@ -30,23 +30,23 @@
     const parts = ['eyes', 'nose', 'mouth', 'ear', 'hair']
 
     //眼睛元件
-    const eyesimgs = ["./avatar_img/eyes/0.png", "./avatar_img/eyes/1.png", "./avatar_img/eyes/2.png"]; //之後要改為由資料庫引入
+    const eyesimgs = ["./img/avatar_img/eyes/0.png", "./img/avatar_img/eyes/1.png", "./img/avatar_img/eyes/2.png"]; //之後要改為由資料庫引入
 
 
     //鼻子元件
-    const noseimgs = ["./avatar_img/nose/0.png"]; //之後要改為由資料庫引入
+    const noseimgs = ["./img/avatar_img/nose/0.png"]; //之後要改為由資料庫引入
 
 
     //嘴巴元件
-    const mouthimgs = ["./avatar_img/mouth/0.png"]; //之後要改為由資料庫引入
+    const mouthimgs = ["./img/avatar_img/mouth/0.png"]; //之後要改為由資料庫引入
 
 
     //耳朵元件
-    const earimgs = ["./avatar_img/ear/0.png"]; //之後要改為由資料庫引入
+    const earimgs = ["./img/avatar_img/ear/0.png"]; //之後要改為由資料庫引入
 
 
     //頭髮元件
-    const hairimgs = ["./avatar_img/hair/0.png"]; //之後要改為由資料庫引入
+    const hairimgs = ["./img/avatar_img/hair/0.png"]; //之後要改為由資料庫引入
 
 
 
@@ -65,7 +65,7 @@
         </div>`;
     };
     async function getData() {
-        const r = await fetch('getshowcase-api.php', {
+        const r = await fetch('./avatar-getshowcase-api.php', {
             method: 'POST',
             //body: fd,
         });
@@ -85,14 +85,14 @@
             avatar.renderer.backgroundColor = 0x1f4f5f;
             avatarBoxes[i].appendChild(avatar.view);
             //基礎底圖
-            let circle = PIXI.Sprite.from('./avatar_img/basic/circle-01.png');
+            let circle = PIXI.Sprite.from('./img/avatar_img/basic/circle-01.png');
             circle.anchor.set(0.5);
             circle.scale.set(0.2);
             circle.x = 100;
             circle.y = 100;
             //circle.tint = 0xdda0dd;
             avatar.stage.addChild(circle);
-            let body = PIXI.Sprite.from('./avatar_img/basic/body-shadow(gray)-01.png');
+            let body = PIXI.Sprite.from('./img/avatar_img/basic/body-shadow(gray)-01.png');
             body.anchor.set(0.5);
             body.scale.set(0.2);
             body.x = 100;
@@ -177,7 +177,7 @@
 
     function delete_it(sid) {
         if (confirm(`確定要刪除編號為 ${sid} 的資料嗎?`)) {
-            location.href = `./order-delete-api.php?sid=${sid}`;
+            location.href = `./avatar-order-delete-api.php?sid=${sid}`;
         }
     }
 

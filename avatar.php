@@ -80,7 +80,7 @@
         <div class="col-12 col-lg-7"></div>
         <div class="col-12 col-lg-5">
             <button class="btn btn-success" id="submitClick">保存形象</button>
-            <a href="./showcase.php" class="btn btn-info">我的衣櫥</a>
+            <a href="./avatar-showcase.php" class="btn btn-info">我的衣櫥</a>
         </div>
     </div>
 </div>
@@ -97,14 +97,14 @@
     avatar.renderer.backgroundColor = 0x2f4f4f;
     pictureFrame.appendChild(avatar.view);
     //基礎底圖
-    let circle = PIXI.Sprite.from('./avatar_img/basic/circle-01.png');
+    let circle = PIXI.Sprite.from('./img/avatar_img/basic/circle-01.png');
     circle.anchor.set(0.5);
     circle.scale.set(0.5);
     circle.x = 240;
     circle.y = 250;
     //circle.tint = 0xdda0dd;
     avatar.stage.addChild(circle);
-    let body = PIXI.Sprite.from('./avatar_img/basic/body-shadow(gray)-01.png');
+    let body = PIXI.Sprite.from('./img/avatar_img/basic/body-shadow(gray)-01.png');
     body.anchor.set(0.5);
     body.scale.set(0.5);
     body.x = 240;
@@ -125,7 +125,7 @@
     const parts = ['eyes', 'nose', 'mouth', 'ear', 'hair']
 
     //眼睛元件
-    const eyesimgs = ["./avatar_img/eyes/0.png", "./avatar_img/eyes/1.png", "./avatar_img/eyes/2.png"]; //之後要改為由資料庫引入
+    const eyesimgs = ["./img/avatar_img/eyes/0.png", "./img/avatar_img/eyes/1.png", "./img/avatar_img/eyes/2.png"]; //之後要改為由資料庫引入
     const items = [];
     items[0] = [];
     for (let i = 0; i < eyesimgs.length; i++) {
@@ -141,7 +141,7 @@
     avatar.stage.addChild(items[0][0]);
 
     //鼻子元件
-    const noseimgs = ["./avatar_img/nose/0.png"]; //之後要改為由資料庫引入
+    const noseimgs = ["./img/avatar_img/nose/0.png"]; //之後要改為由資料庫引入
     items[1] = [];
     for (let i = 0; i < noseimgs.length; i++) {
         let nose = PIXI.Sprite.from(noseimgs[i]);
@@ -156,7 +156,7 @@
     avatar.stage.addChild(items[1][0]);
 
     //嘴巴元件
-    const mouthimgs = ["./avatar_img/mouth/0.png"]; //之後要改為由資料庫引入
+    const mouthimgs = ["./img/avatar_img/mouth/0.png"]; //之後要改為由資料庫引入
     items[2] = [];
     for (let i = 0; i < mouthimgs.length; i++) {
         let mouth = PIXI.Sprite.from(mouthimgs[i]);
@@ -171,7 +171,7 @@
     avatar.stage.addChild(items[2][0]);
 
     //耳朵元件
-    const earimgs = ["./avatar_img/ear/0.png"]; //之後要改為由資料庫引入
+    const earimgs = ["./img/avatar_img/ear/0.png"]; //之後要改為由資料庫引入
     items[3] = [];
     for (let i = 0; i < earimgs.length; i++) {
         let ear = PIXI.Sprite.from(earimgs[i]);
@@ -187,7 +187,7 @@
     avatar.stage.addChild(items[3][0]);
 
     //頭髮元件
-    const hairimgs = ["./avatar_img/hair/0.png"]; //之後要改為由資料庫引入
+    const hairimgs = ["./img/avatar_img/hair/0.png"]; //之後要改為由資料庫引入
     items[4] = [];
     for (let i = 0; i < hairimgs.length; i++) {
         let hair = PIXI.Sprite.from(hairimgs[i]);
@@ -336,10 +336,10 @@
     async function sendData() {
         const fd = new FormData(document.form1);
         console.log(fd);
-        let aPi = './order-add-api.php';
+        let aPi = './avatar-order-add-api.php';
         if (location.search.length > 0) {
             console.log(111);
-            aPi = './order-edit-api.php';
+            aPi = './avatar-order-edit-api.php';
         };
         const r = await fetch(aPi, {
             method: 'POST',
@@ -362,7 +362,7 @@
         avatarID.value = location.search.slice(10);
         async function getEditdata() {
             const fd = new FormData(document.form2);
-            const r = await fetch('./get-edit-data-api.php', {
+            const r = await fetch('./avatar-get-edit-data-api.php', {
                 method: 'POST',
                 body: fd,
             });
