@@ -4,6 +4,7 @@
     body {
         background-color: #2f4f4f;
     }
+
     .boxes button {
         width: 50px;
         height: 50px;
@@ -335,7 +336,6 @@
     })
     async function sendData() {
         const fd = new FormData(document.form1);
-        console.log(fd);
         let aPi = './avatar-order-add-api.php';
         if (location.search.length > 0) {
             console.log(111);
@@ -347,11 +347,13 @@
         });
         const result = await r.json();
         console.log(result);
+        if (result['success'] === true) {
+            alert('保存成功');
+        }
     }
 
     //如果有location.search會變成修改
     if (location.search.length > 0) {
-        submitClick.innerText = '修改形象';
         console.log('search is alive!!');
         const inputAID = document.createElement('input');
         inputAID.type = 'text';
@@ -373,8 +375,6 @@
                 const colorbtns = document.querySelectorAll("." + parts[i] + "colorbtn");
                 btns[a[parts[i]]].click();
                 colorbtns[a[parts[i] + "Color"]].click();
-                // console.log(a[parts[i]]);
-                // console.log(a[parts[i] + "Color"]);
             }
 
         }

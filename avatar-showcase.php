@@ -16,8 +16,6 @@
     const showcase = document.querySelector('#showcase');
     const showcases = document.querySelector('#showcases');
 
-
-
     //顏色列表
     const colors = [];
     colors[0] = [0xffffff, 0xffcccc, 0xccffcc, 0xccccff, 0x8fbc8f, 0xffd700, 0xed1848];
@@ -31,25 +29,14 @@
 
     //眼睛元件
     const eyesimgs = ["./img/avatar_img/eyes/0.png", "./img/avatar_img/eyes/1.png", "./img/avatar_img/eyes/2.png"]; //之後要改為由資料庫引入
-
-
     //鼻子元件
     const noseimgs = ["./img/avatar_img/nose/0.png"]; //之後要改為由資料庫引入
-
-
     //嘴巴元件
     const mouthimgs = ["./img/avatar_img/mouth/0.png"]; //之後要改為由資料庫引入
-
-
     //耳朵元件
     const earimgs = ["./img/avatar_img/ear/0.png"]; //之後要改為由資料庫引入
-
-
     //頭髮元件
     const hairimgs = ["./img/avatar_img/hair/0.png"]; //之後要改為由資料庫引入
-
-
-
 
     const avatarBox = (f, g) => {
         return `
@@ -67,7 +54,6 @@
     async function getData() {
         const r = await fetch('./avatar-getshowcase-api.php', {
             method: 'POST',
-            //body: fd,
         });
         const result = await r.json();
         console.log(result);
@@ -90,7 +76,6 @@
             circle.scale.set(0.2);
             circle.x = 100;
             circle.y = 100;
-            //circle.tint = 0xdda0dd;
             avatar.stage.addChild(circle);
             let body = PIXI.Sprite.from('./img/avatar_img/basic/body-shadow(gray)-01.png');
             body.anchor.set(0.5);
@@ -101,6 +86,7 @@
             body.tint = 0xdda0dd;
             avatar.stage.addChild(body);
 
+            //眼睛
             let eye = PIXI.Sprite.from(eyesimgs[a[parts[0]]]);
             eye.anchor.set(0.5); //錨點
             eye.scale.set(0.2); //大小
@@ -109,12 +95,10 @@
             eye.y = 100;
             eye.zIndex = 2;
             eye.tint = colors[0][a[parts[0] + "Color"]];
-            //items[0].push(eye); //存入陣列中備用
 
             avatar.stage.addChild(eye);
 
-            // items[1] = [];
-            // for (let i = 0; i < noseimgs.length; i++) {
+            //鼻子
             let nose = PIXI.Sprite.from(noseimgs[a[parts[1]]]);
             nose.anchor.set(0.5); //錨點
             nose.scale.set(0.2); //大小
@@ -123,12 +107,10 @@
             nose.y = 100;
             nose.zIndex = 2;
             nose.tint = colors[1][a[parts[1] + "Color"]];
-            //     items[1].push(nose); //存入陣列中備用
-            // }
+            
             avatar.stage.addChild(nose);
 
-            // items[2] = [];
-            // for (let i = 0; i < mouthimgs.length; i++) {
+            //嘴巴
             let mouth = PIXI.Sprite.from(mouthimgs[a[parts[2]]]);
             mouth.anchor.set(0.5); //錨點
             mouth.scale.set(0.2); //大小
@@ -137,12 +119,10 @@
             mouth.y = 100;
             mouth.zIndex = 2;
             mouth.tint = colors[2][a[parts[2] + "Color"]];
-            //     items[2].push(mouth); //存入陣列中備用
-            // }
+            
             avatar.stage.addChild(mouth);
 
-            // items[3] = [];
-            // for (let i = 0; i < earimgs.length; i++) {
+            //耳朵
             let ear = PIXI.Sprite.from(earimgs[a[parts[3]]]);
             ear.anchor.set(0.5); //錨點
             ear.scale.set(0.2); //大小
@@ -151,12 +131,10 @@
             ear.y = 100;
             ear.zIndex = 0;
             ear.tint = colors[3][a[parts[3] + "Color"]];
-            //     items[3].push(ear); //存入陣列中備用
-            // }
+            
             avatar.stage.addChild(ear);
 
-            // items[4] = [];
-            // for (let i = 0; i < hairimgs.length; i++) {
+            //頭髮
             let hair = PIXI.Sprite.from(hairimgs[a[parts[4]]]);
             hair.anchor.set(0.5); //錨點
             hair.scale.set(0.2); //大小
@@ -165,8 +143,7 @@
             hair.y = 100;
             hair.zIndex = 2;
             hair.tint = colors[4][a[parts[4] + "Color"]];
-            //     items[4].push(hair); //存入陣列中備用
-            // }
+
             avatar.stage.addChild(hair);
 
             //調整圖層的前後順序
