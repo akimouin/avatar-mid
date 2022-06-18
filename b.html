@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>試切</title>
+        <!-- CSS only -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+            crossorigin="anonymous"
+        />
+        <style>
+            nav {
+                height: 6vh;
+                background-color: #ccc;
+            }
+            .box {
+                height: 85vh;
+                width: 600px;
+                margin: 10px 20px;
+                position: relative;
+            }
+            p {
+                padding: 0 30px 20px;
+            }
+            .circle {
+                width: 30px;
+                height: 30px;
+                background-color: #ccc;
+                border-radius: 50%;
+                margin: 10px 10px 0 20px;
+            }
+            .line{
+                background-color: #666;
+                position: absolute;
+            }
+            .line:nth-child(1) {
+                height: 1px;
+                width: 90px;
+                transform: translateX(-90px) translateY(16px);
+            }
+            .line:nth-child(2) {
+                height: 200px;
+                width: 1px;
+                transform: translateX(-90px) translateY(16px);
+            }
+            .line:nth-child(3) {
+                height: 1px;
+                width: 250px;
+                transform: translateX(-340px) translateY(215px);
+            }
+        </style>
+    </head>
+    <body>
+        <nav><h1>navbar</h1></nav>
+        <div class="container-fluid"
+            ><div class="row justify-content-center">
+                <div class="box"></div>
+                <div class="box">
+                    <div class="info">
+                        <p
+                            >Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Dicta rem voluptas, neque repellat nulla
+                            consequuntur</p
+                        >
+                    </div>
+                    <div class="pic text-center mb-4">
+                        <img src="./sample.png" alt="" />
+                    </div>
+                    <div class="info">
+                        <p
+                            >Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Dicta rem voluptas, neque repellat nulla
+                            consequuntur inventore dolor debitis, culpa illum
+                            nisi, laborum dolores labore quidem autem hic
+                            expedita? Unde, placeat.</p
+                        >
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <h3>◆眼 eyes</h3>
+                    <div class="controlarea" id="controlareaEyes">
+                        <div class="color">
+                            <p>color</p>
+                            <div class="btns d-flex flex-wrap">
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                        <div class="styling">
+                            <p>style</p>
+                            <div class="btns d-flex flex-wrap">
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./js/jquery-3.6.0.js"></script>
+        <script>
+            const boxStyle = {
+                "flex-shrink": "0",
+                padding: "20px 0",
+                border: "1px solid #aaa",
+                "border-radius": "10px",
+            };
+            const controlareaEyesStyle = {
+                border: "1px solid #aaa",
+                "border-radius": "10px",
+                padding: "20px 10px",
+            };
+            $(".box").eq(1).css(boxStyle).siblings().css("width", "300px");
+            $(".box:eq(1) div").css("margin", "10px 20px");
+            $("#controlareaEyes").css(controlareaEyesStyle);
+            //todo:將指示線改為動態顯示
+        </script>
+    </body>
+</html>
